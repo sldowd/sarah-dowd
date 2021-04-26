@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 
 function Project(props) {
@@ -25,7 +24,7 @@ function Project(props) {
         <section>
             {currentProject.map((project) =>
                 <div className="flex-row" key={project}>
-                    <Card background="none">
+                    <Card>
                     <CardHeader title={project.name}></CardHeader>
                     <img src={project.imgSrc} alt="Screenshot of project"/>
                         <CardContent>
