@@ -126,12 +126,10 @@ button[disabled] {
   opacity: .8;
 }
 
-.card {
-  background-color: var(--dark);
-}
 
 img {
   max-width: 100%;
+  min-width: 50%;
 }
 
 span[role="img"] {

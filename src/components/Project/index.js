@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
+import {Card} from 'react-bootstrap';
+
+
 
 function Project(props) {
 
@@ -22,18 +22,20 @@ function Project(props) {
 
     return (
         <section>
+            
             {currentProject.map((project) =>
-                <div className="flex-row" key={project}>
-                    <Card>
-                    <CardHeader title={project.name}></CardHeader>
-                    <img src={project.imgSrc} alt="Screenshot of project"/>
-                        <CardContent>
+                <div className="my-2 flex-row space-between" key={project}>
+                    <Card className="flex-row spacebetween">
+                    <Card.Title title={project.name}></Card.Title>
+                    <img className="img" src={project.imgSrc} alt="Screenshot of project"/>
+                        <Card.Body>
                         <a href={project.deployedUrl}>Deployed Project | </a>
                         <a href={project.githubUrl}>Github Repository</a>
-                        </CardContent>
+                        </Card.Body>
                     </Card>
                 </div>
             )}
+            
         </section>
     );
 }
