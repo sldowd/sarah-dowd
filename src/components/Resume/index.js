@@ -3,7 +3,7 @@ import React from 'react';
 function Resume() {
     return(
         <section>
-            <embed src="./assets/resume.pdf" width="500px" height="500px" />
+            <embed src="./assets/sarah-dowd-cv.pdf" width="500px" height="500px" />
         </section>
     )
 }
