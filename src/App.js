@@ -23,7 +23,7 @@ function App() {
             <Resume></Resume>
           </>
         ) : (
-          <ContactForm></ContactForm>
+          <ContactForm />
         )}
       </main>
       <Footer></Footer>

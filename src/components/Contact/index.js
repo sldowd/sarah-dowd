@@ -1,71 +1,71 @@
-import React, { useState } from 'react';
-import { validateEmail } from '../../utils/helpers';
+import React, { useState } from 'react'
+import { Axios, db } from '../../firebase/firebaseConfig'
+import './styled.scss'
 
-function ContactForm() {
+const ContactForm = () => {
+  const [formData, setFormData] = useState({})
 
-    const [errorMessage, setErrorMessage] = useState('');
-
-    const [formState, setFormState] = useState({
-        name:'',
-        email:'',
-        message:''
-    });
-    
-    const { name, email, message } = formState;
-
-    function handleChange(e) {
-        if (e.target.name === 'email') {
-            const isValid = validateEmail(e.target.value);
-            console.log(isValid);
-            
-            if(!isValid) {
-                setErrorMessage('-your email is invalid-');
-            } else {
-                setErrorMessage('');
-            }
-        } else {
-            if (!e.target.value.length) {
-                setErrorMessage(`-${e.target.name} is required-`);
-            } else {
-                setErrorMessage('');
-            }
-        }
-        if (!errorMessage) {
-            setFormState({...formState, [e.target.name]: e.target.value})
-        }
-        console.log('errorMessage', errorMessage);
-    }
-    
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log(formState);
-    }
-
-    return (
-        <section>
-            <h1>Contact Me</h1>
-            <form id="contact-form" onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" defaultValue={name} onBlur={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" name="email" defaultValue={email} onBlur={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="message">Message:</label>
-                    <textarea name="message" rows="5" defaultValue={message} onBlur={handleChange} />
-                </div>
-                {errorMessage && (
-                    <div>
-                        <p className="error-text">{errorMessage}</p>
-                    </div>
-                )}
-                <button type="submit">Submit</button>
-            </form>
-        </section>
+  const updateInput = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+  const handleSubmit = event => {
+    event.preventDefault()
+    sendEmail()
+    setFormData({
+      name: '',
+      email: '',
+      message: '',
+    })
+  }
+  const sendEmail = () => {
+    Axios.post(
+      'https://us-central1-your-app-name.cloudfunctions.net/submit',
+      formData
     )
+      .then(res => {
+        db.collection('emails').add({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          time: new Date(),
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          onChange={updateInput}
+          value={formData.name || ''}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={updateInput}
+          value={formData.email || ''}
+        />
+        <textarea
+          type="text"
+          name="message"
+          placeholder="Message"
+          onChange={updateInput}
+          value={formData.message || ''}
+        ></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </>
+  )
 }
 
-export default ContactForm;
+export default ContactForm
