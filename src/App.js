@@ -6,28 +6,24 @@ import Footer from './components/Footer';
 import Project from './components/Project';
 import ContactForm from './components/Contact';
 import Resume from './components/Resume';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [contactSelected, setContactSelected] = useState(false);
   return (
-    <div>
-      <Header
-      contactSelected={contactSelected}
-      setContactSelected={setContactSelected}
-      ></Header>
-      <main>
-        {!contactSelected ? (
-          <>
-            <About></About>
-            <Project></Project>
-            <Resume></Resume>
-          </>
-        ) : (
-          <ContactForm />
-        )}
-      </main>
-      <Footer></Footer>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Header></Header>
+        <main>
+          <Routes>
+            <Route path="/" exact element={<About />}></Route>
+            <Route path="/projects" exact element={<Project />}></Route>
+            <Route path="/resume" exact element={<Resume />}></Route>
+            <Route path="/contact" exact element={<ContactForm />}></Route>
+          </Routes>
+        </main>
+        <Footer></Footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
