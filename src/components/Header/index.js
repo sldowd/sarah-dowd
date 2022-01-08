@@ -1,11 +1,8 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-function Header(props) {
-    const {
-        contactSelected,
-        setContactSelected
-    } = props;
+function Header() {
 
     return (
         <header>
@@ -13,16 +10,16 @@ function Header(props) {
                 <Navbar.Brand className="display:block" href="#home">Sarah Dowd</Navbar.Brand>
                 <Nav className="justify-content-end flex-row flex-end">
                     <Nav.Item className="mx-2">
-                        <Nav.Link href="#about" onClick={() => setContactSelected(false)}>About</Nav.Link>
+                        <Nav.Link as="div"><Link to="/">About</Link></Nav.Link>
                     </Nav.Item >
                     <Nav.Item className="mx-2">
-                        <Nav.Link href="#Portfolio">Portfolio</Nav.Link>
+                        <Nav.Link as="div"><Link to="/projects">Projects</Link></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="mx-2">
-                        <Nav.Link href="#Resume">Resume</Nav.Link>
+                        <Nav.Link as="div"><Link to="/resume">Resume</Link></Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="mx-2">
-                        <Nav.Link href="#Contact" onClick={() => setContactSelected(true)}>Contact</Nav.Link>
+                        <Nav.Link as="div"><Link to="/contact">Contact</Link></Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Navbar>
