@@ -28,5 +28,5 @@ const db = getFirestore()
 // export const auth = app.auth();
 
 export { Axios, 
-  db
+  db, app
  }
