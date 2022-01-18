@@ -1,19 +1,11 @@
-// import { CardContent } from '@material-ui/core';
 import React from 'react';
-import { Card, CardDeck } from 'react-bootstrap';
-import { Grid } from '@material-ui/core';
+import { Card } from 'react-bootstrap';
 
 
 
 function Project(props) {
 
     const currentProject = [
-        {
-            name: "Paranormal Tourism Database",
-            imgSrc: "./assets/PTDB-screenshot.png",
-            deployedUrl: "http://paranormal-tourism.herokuapp.com/",
-            githubUrl: "https://github.com/RaeStichter/paranormal-tourism"
-        },
         {
             name: "Dungeon Masters Guide",
             imgSrc: "./assets/DMG-screenshot.png",
@@ -27,34 +19,39 @@ function Project(props) {
             githubUrl: "https://github.com/sldowd/kanban-board"
         },
         {
-            name: "Dungeon Masters Guide",
-            imgSrc: "./assets/DMG-screenshot.png",
-            deployedUrl: "https://dungeon-masters-guide.herokuapp.com/",
-            githubUrl: "https://github.com/RaeStichter/initiate-dnd"
-        }
+            name: "Paranormal Tourism Database",
+            imgSrc: "./assets/PTDB-screenshot.png",
+            deployedUrl: "http://paranormal-tourism.herokuapp.com/",
+            githubUrl: "https://github.com/RaeStichter/paranormal-tourism"
+        },
+        {
+            name: "Readme Generator",
+            imgSrc: "./assets/readmegen-screenshot.png",
+            deployedUrl: "https://sldowd.github.io/readme-generator/",
+            githubUrl: "https://github.com/sldowd/readme-generator"
+        },
+        {
+            name: "Regular Expression Tutorial",
+            imgSrc: "./assets/gist-screenshot.png",
+            deployedUrl: "https://gist.github.com/sldowd/9c2d0a3780020b12101b78f833f21659",
+            githubUrl: "https://github.com/sldowd"
+        },
 ]
 
     return (
-        <section>
-            <CardDeck>
-            <Grid container spacing={1} justify="center">
+        <section className='flex-row space-between'>
             {currentProject.map((project) =>
-                <Grid item xs={12} sm={6} md={6}>
-                    <Card className="card" key={project}>
+                    <Card className="card my-5" key={project}>
                     <div>
-                    <Card.Title title={project.name}></Card.Title>
-                    <img className="img" src={project.imgSrc} alt="Screenshot of project"/>
                         <Card.Body>
+                        <img className="img" src={project.imgSrc} alt="Screenshot of project"/>
+                        <Card.Title Title={project.name}>{project.name}</Card.Title>
                         <a href={project.deployedUrl}>Deployed Project | </a>
                         <a href={project.githubUrl}>Github Repository</a>
                         </Card.Body>
                     </div>
                     </Card>
-                </Grid>
             )}
-            </Grid>
-            </CardDeck>
-            
         </section>
     );
 }
