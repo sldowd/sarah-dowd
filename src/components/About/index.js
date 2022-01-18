@@ -5,7 +5,7 @@ function About() {
         <div>
         <h1>Sarah Dowd</h1>
         <h7>Full-stack web developer with a passion for community and lifelong learning. Skilled in HTML, CSS, JavaScript and Node.js, 
-            with some experience with Sass and SCSS. I received my certificate in full-stack web development from the University of 
+            with some experience with Sass. I received my certificate in full-stack web development from the University of 
             Pennsylvania. Before I found my passion for coding, I studied health and wellness and became a certified health coach while 
             working multiple jobs in the restaurant industry. My experience has taught me the importance of balance, attention to detail, 
             and prioritizing multiple important tasks at once. While working as a food cost manager for several years, I developed 

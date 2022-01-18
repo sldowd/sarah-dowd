@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Card, CardDeck } from 'react-bootstrap';
-import { Grid } from '@material-ui/core';
+import { Card } from 'react-bootstrap';
 
 
 
@@ -41,26 +40,19 @@ function Project(props) {
 ]
 
     return (
-        <section>
-            <CardDeck>
-            <Grid container spacing={4} justify="center">
+        <section className='flex-row space-between'>
             {currentProject.map((project) =>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Card className="card" key={project}>
+                    <Card className="card my-5" key={project}>
                     <div>
-                    <img className="img" src={project.imgSrc} alt="Screenshot of project"/>
                         <Card.Body>
+                        <img className="img" src={project.imgSrc} alt="Screenshot of project"/>
                         <Card.Title Title={project.name}>{project.name}</Card.Title>
                         <a href={project.deployedUrl}>Deployed Project | </a>
                         <a href={project.githubUrl}>Github Repository</a>
                         </Card.Body>
                     </div>
                     </Card>
-                </Grid>
             )}
-            </Grid>
-            </CardDeck>
-            
         </section>
     );
 }
